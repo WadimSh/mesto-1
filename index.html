@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Практическая работа 4">
+    <meta name="keywords" content="html, css">
+    <meta name="author" content="Вадим Ширинга">
+	<link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Место-Россия</title>
+</head>
+<body>
+    <div class="page">
+	    <header class="header">
+		    <img src="./images/logo.svg" alt="Логотип" class="header__logo">
+	    </header>
+        <main class="content">
+	        <section class="profile">
+				<img src="./images/image.jpg" alt="Фото профеля" class="profile__avatar">
+				<h1 class="profile__user-name">Жак-Ив Кусто</h1>
+				<p class="profile__user-jop">Исследователь океана</p>
+				<button type="button" class="edit-profile profile__edit-profile"></button>
+				<button type="button" class="add-button profile__add-button"></button>
+	        </section>
+	        <ul class="elements">
+		        <li class="element">
+			        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото" class="element__photo">
+			        <div class="element__block">
+				        <h2 class="element__title">Карачаевск</h2>
+				        <div class="element__icon"></div>
+			        </div>
+		        </li>
+				<li class="element">
+			        <img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото" class="element__photo">
+			        <div class="element__block">
+				        <h2 class="element__title">Гора Эльбрус</h2>
+				        <div class="element__icon"></div>
+			        </div>
+		        </li>
+				<li class="element">
+			        <img src="./images/kirill-pershin-1556355-unsplash.png" alt="фото" class="element__photo">
+			        <div class="element__block">
+				        <h2 class="element__title">Домбай</h2>
+				        <div class="element__icon"></div>
+			        </div>
+		        </li>
+				<li class="element">
+			        <img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото" class="element__photo">
+			        <div class="element__block">
+				        <h2 class="element__title">Гора Эльбрус</h2>
+				        <div class="element__icon"></div>
+			        </div>
+		        </li>
+				<li class="element">
+			        <img src="./images/kirill-pershin-1556355-unsplash.png" alt="фото" class="element__photo">
+			        <div class="element__block">
+				        <h2 class="element__title">Домбай</h2>
+				        <div class="element__icon"></div>
+			        </div>
+		        </li>
+				<li class="element">
+			        <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото" class="element__photo">
+			        <div class="element__block">
+				        <h2 class="element__title">Карачаево-Черкессия</h2>
+				        <div class="element__icon"></div>
+			        </div>
+		        </li>
+		    </ul>
+        </main>
+	    <footer class="footer">
+		    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+	    </footer>
+	    <div class="popup popup_opened">
+		    <form class="popup__container">
+			    <button class="popup__close-button">
+					<img src="./images/Close Icon.png" alt="Закрыть" class="popup__close-icon">
+				</button>
+			    <fieldset class="popup__form">
+				    <h3 class="popup__title">Редактировать профиль</h3>
+				    <input type="text" class="popup__name">
+				    <input type="text" class="popup__profession">
+				    <button type="submit" class="popup__save-button">Сохранить</button>
+				</fieldset>
+		    </form>
+	    </div>
+    </div>
+	<script src="index.js"></script>
+</body>
+</html> 
