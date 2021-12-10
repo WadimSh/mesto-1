@@ -1,0 +1,12 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 880px;
+    max-height: 74px;
+    margin: 0 auto;
+    padding-top: 45px;
+    padding-bottom: 41px;
+    border-bottom: 1px solid #545454;
+    opacity: 0.7;
+}

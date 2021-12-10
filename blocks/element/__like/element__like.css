@@ -1,0 +1,19 @@
+.element__like {
+    padding-left: 22px;
+    padding-right: 20px;
+    width: 22px;
+    height: 19px;
+    background-image: url(./images/icon-heart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.element__like:hover {
+    opacity: .5;
+}
+
+.element__like:active {
+    background-image: url(./images/icon-heart-black.png);
+    opacity: 1;
+}
