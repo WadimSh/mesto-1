@@ -1,7 +1,8 @@
 .element__like {
     padding-left: 22px;
     padding-right: 20px;
-    width: 22px;
+    max-width: 22px;
+    width: 100%;
     height: 19px;
     background-image: url(../../../images/icon-heart.svg);
     background-repeat: no-repeat;
