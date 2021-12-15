@@ -6,10 +6,11 @@
     box-sizing: border-box;
     border-radius: 2px;
     background-color: #000;
-    background-image: url(../../../images/add-button.png);
+    background-image: url(../../../images/add-button.svg);
     background-repeat: no-repeat;
     background-position: center;
     padding: 0;
+    transition: .3s;
     cursor: pointer;
 }
   

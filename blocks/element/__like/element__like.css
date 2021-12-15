@@ -1,12 +1,13 @@
 .element__like {
-    padding-left: 22px;
-    padding-right: 20px;
+    padding: 0;
+    margin-left: 22px;
+    margin-right: 20px;
     max-width: 22px;
     width: 100%;
     height: 19px;
-    background-image: url(../../../images/icon-heart.svg);
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url(../../../images/like-button.svg) center no-repeat;
+    border: none;
+    transition: .3s;
     cursor: pointer;
 }
 
@@ -15,6 +16,6 @@
 }
 
 .element__like:active {
-    background-image: url(../../../images/icon-heart-black.png);
+    background-image: url(../../../images/activ-like-button.svg);
     opacity: 1;
 }

@@ -4,16 +4,17 @@ const closeButton = document.querySelector('.popup__close-button');
 const inputForm = document.querySelector('.popup__form');
 const userName = document.querySelector('.profile__name');
 const userProf = document.querySelector('.profile__prof');
-
-let inputName = document.querySelector('.popup__name');
-let inputProf = document.querySelector('.popup__prof');
+const inputName = document.querySelector('#popup__name');
+const inputProf = document.querySelector('#popup__prof');
 
 function openPopup() {
-    popupForm.classList.remove('popup_opened');
+    popupForm.classList.add('popup_opened');
 }
 
 function closePopup() {
-    popupForm.classList.add('popup_opened');
+    popupForm.classList.remove('popup_opened');
+	inputName.value = userName.textContent;
+	inputProf.value = userProf.textContent;
 }
 
 function formSubmitHandler (evt) {
@@ -22,9 +23,6 @@ function formSubmitHandler (evt) {
 	userProf.textContent = inputProf.value;
 	closePopup();
 }
-
-inputName.value = userName.textContent;
-inputProf.value = userProf.textContent;
 
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
