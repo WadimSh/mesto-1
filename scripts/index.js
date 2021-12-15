@@ -9,12 +9,13 @@ const inputProf = document.querySelector('#popup__prof');
 
 function openPopup() {
     popupForm.classList.add('popup_opened');
+	inputName.value = userName.textContent;
+	inputProf.value = userProf.textContent;
 }
 
 function closePopup() {
     popupForm.classList.remove('popup_opened');
-	inputName.value = userName.textContent;
-	inputProf.value = userProf.textContent;
+	
 }
 
 function formSubmitHandler (evt) {
