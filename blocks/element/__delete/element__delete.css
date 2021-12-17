@@ -1,0 +1,15 @@
+.element__delete {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 18px;
+    height: 19px;
+    background: url('../../../images/card-del.svg') center no-repeat;
+    border: none;
+    cursor: pointer;    
+}
+
+.element__delete:hover {
+    transition: .3s;
+    opacity: .6;
+}
