@@ -97,29 +97,31 @@ function popupPhoto (popupElement) {
     });
 }
 
+function createCard (name, link) {
+	const userElement = elementTemplate.querySelector('.element').cloneNode(true);
+		userElement.querySelector('.element__photo').src = link;
+		userElement.querySelector('.element__photo').alt = name;
+		userElement.querySelector('.element__title').textContent = name;
+	likeCard (userElement);
+	deleteCard (userElement);
+	popupPhoto (userElement);
+
+	return userElement;
+}
+
 function formSubmitHandlerAdd (evt) {
     evt.preventDefault();
-    const userElement = elementTemplate.querySelector('.element').cloneNode(true);
-        userElement.querySelector('.element__photo').src = inputPhoto.value;
-        userElement.querySelector('.element__photo').alt = inputTitle.value;
-        userElement.querySelector('.element__title').textContent = inputTitle.value;
-    likeCard (userElement);
-    deleteCard (userElement);
-    popupPhoto (userElement);
-    elementsGrid.prepend(userElement);
+	const name = inputTitle.value;
+	const link = inputPhoto.value;
+	const newCard = createCard (name, link);
+	elementsGrid.prepend(newCard);
     closePopup (popupFormAdd);
 }
 
 function constructorCard() {
 	initialCards.forEach(function(item){
-		const userElement = elementTemplate.querySelector('.element').cloneNode(true);
-		userElement.querySelector('.element__photo').src = item.link;
-		userElement.querySelector('.element__photo').alt = item.name;
-		userElement.querySelector('.element__title').textContent = item.name;
-    likeCard (userElement);
-    deleteCard (userElement);
-    popupPhoto (userElement);
-	elementsGrid.append(userElement);
+		const newCard = createCard (item.name, item.link);
+	elementsGrid.append(newCard);
 });
 }
 
