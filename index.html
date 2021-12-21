@@ -26,54 +26,7 @@
 			</section>
 			<section class="elements">
 				<ul class="elements__grid">
-					<li class="element">
-						<img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото места" class="element__photo">
-						<button type="button" class="element__delete"></button>
-						<div class="element__block">
-							<h2 class="element__title">Карачаевск</h2>
-							<button type="button" class="element__like"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото места" class="element__photo">
-						<button type="button" class="element__delete"></button>
-						<div class="element__block">
-							<h2 class="element__title">Гора Эльбрус</h2>
-							<button type="button" class="element__like"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/kirill-pershin-1556355-unsplash.png" alt="фото места" class="element__photo">
-						<button type="button" class="element__delete"></button>
-						<div class="element__block">
-							<h2 class="element__title">Домбай</h2>
-							<button type="button" class="element__like"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото места" class="element__photo">
-						<button type="button" class="element__delete"></button>
-						<div class="element__block">
-							<h2 class="element__title">Гора Эльбрус</h2>
-							<button type="button" class="element__like"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/kirill-pershin-1556355-unsplash.png" alt="фото места" class="element__photo">
-						<button type="button" class="element__delete"></button>
-						<div class="element__block">
-							<h2 class="element__title">Домбай</h2>
-							<button type="button" class="element__like"></button>
-						</div>
-					</li>
-					<li class="element">
-						<img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото места" class="element__photo">
-						<button type="button" class="element__delete"></button>
-						<div class="element__block">
-							<h2 class="element__title">Карачаево-Черкессия</h2>
-							<button type="button" class="element__like"></button>
-						</div>
-					</li>
+					
 				</ul>
 			</section>
 		</main>
@@ -85,10 +38,10 @@
 	<div class="popup popup_type_profile">
 		<div class="popup__container">
 			<button type="button" class="popup__close-button"></button>
-			<form class="popup__form" name="profile-form">
+			<form class="popup__form popup__form_type_edit" name="profile-form">
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<input type="text" class="popup__input popup__input_type_name" name="profile-name" placeholder="Ваше имя">
-				<input type="text" class="popup__input popup__input_type_prof" name="profile-prof" placeholder="Ваше род занятий">
+				<input type="text" class="popup__input popup__input_type_name" name="profile-name" placeholder="Ваше имя" autocomplete="off">
+				<input type="text" class="popup__input popup__input_type_prof" name="profile-prof" placeholder="Ваше род занятий" autocomplete="off">
 				<button type="submit" class="popup__save-button">Сохранить</button>
 			</form>
 		</div>
@@ -96,14 +49,31 @@
 	<div class="popup popup_type_card">
 		<div class="popup__container">
 			<button type="button" class="popup__close-button"></button>
-			<form class="popup__form" name="profile-form">
+			<form class="popup__form popup__form_type_add" name="profile-form">
 				<h2 class="popup__title">Новое место</h2>
-				<input type="text" class="popup__input popup__input_type_name" name="profile-name" placeholder="Название">
-				<input type="url" class="popup__input popup__input_type_prof" name="profile-prof" placeholder="Ссылка на картинку">
+				<input type="text" class="popup__input popup__input_type_title" name="element-title" placeholder="Название" autocomplete="off">
+				<input type="url" class="popup__input popup__input_type_photo" name="element-photo" placeholder="Ссылка на картинку" autocomplete="off">
 				<button type="submit" class="popup__save-button">Сохранить</button>
 			</form>
 		</div>
 	</div>
+	<div class="popup popup_type_photo">
+		<div class="popup__container popup__container-photo">
+		  <button type="button" class="popup__close-button"></button>
+		  <img src="#" alt="фото места" class="popup__photo">
+		  <h2 class="popup__photo-caption"></h2>
+		</div>
+	</div>
+	<template id="template-element">
+		<li class="element">
+			<img src="#" alt="фото места" class="element__photo">
+			<button type="button" class="element__delete"></button>
+			<div class="element__block">
+				<h2 class="element__title"></h2>
+				<button type="button" class="element__like"></button>
+			</div>
+		</li>
+	</template>
 	<script src="./scripts/index.js"></script>
 </body>
 </html> 
