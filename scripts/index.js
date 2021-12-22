@@ -122,13 +122,13 @@ function constructorCard() {
 }
 
 editButton.addEventListener('click', openPopupEdit);
-closeButtonEdit.addEventListener('click', () => closePopup(popupFormEdit));
+closeButtonEdit.addEventListener('click', () => clickPopup(popupFormEdit));
 inputFormEdit.addEventListener('submit', formSubmitHandlerEdit);
 
 addButton.addEventListener('click', openPopupAdd);
-closeButtonAdd.addEventListener('click', () => closePopup(popupFormAdd));
+closeButtonAdd.addEventListener('click', () => clickPopup(popupFormAdd));
 inputFormAdd.addEventListener('submit', formSubmitHandlerAdd);
 
-closeButtonPhoto.addEventListener('click', () => closePopup(popupFormPhoto));
+closeButtonPhoto.addEventListener('click', () => clickPopup(popupFormPhoto));
 
 constructorCard();
