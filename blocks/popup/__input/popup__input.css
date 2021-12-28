@@ -12,6 +12,9 @@
 	font-size: 14px;
 	line-height: 17px;
 	cursor: text;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;  
 }
 
 .popup__input:last-of-type {
@@ -20,6 +23,10 @@
 
 .popup__input:focus {
 	opacity: 1;
+}
+
+.popup__input:last-of-type {
+	margin-bottom: 48px;
 }
 
 @media screen and (max-width: 767px) {

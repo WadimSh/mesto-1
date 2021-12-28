@@ -48,19 +48,41 @@ const closeButtonPhoto = popupFormPhoto.querySelector('.popup__close-button');
 const elementTemplate = document.querySelector('#template-element').content;
 const elementsGrid = document.querySelector('.elements__grid');
 
-function clickPopup (formName) {
-    formName.classList.toggle('popup_opened');
+const closeMausOverlay = (evt) => {
+	const item = document.querySelector('.popup_opened');
+	if(evt.target === item) {
+		closePopup(item);
+	}
+}
+
+const closeKeybordEscape = (evt) => {
+	const item = document.querySelector('.popup_opened');
+	if(evt.key === 'Escape') {
+		closePopup(item);
+	}
+}
+
+function openPopup (formName) {
+    formName.classList.add('popup_opened');
+	document.addEventListener('mousedown', closeMausOverlay);
+   	document.addEventListener('keydown', closeKeybordEscape);
+}
+
+function closePopup (formName) {
+    formName.classList.remove('popup_opened');
+	document.removeEventListener('mousedown', closeMausOverlay);
+   	document.removeEventListener('keydown', closeKeybordEscape);
 }
 
 function openPopupEdit() {
-    clickPopup (popupFormEdit);
+    openPopup (popupFormEdit);
     inputName.value = userName.textContent;
 	inputProf.value = userProf.textContent;
 }
 
 function openPopupAdd() {
-    clickPopup (popupFormAdd);
-    inputTitle.value = '';
+    openPopup (popupFormAdd);
+	inputTitle.value = '';
 	inputPhoto.value = '';
 }
 
@@ -68,7 +90,7 @@ function formSubmitHandlerEdit (evt) {
 	evt.preventDefault(); 
 	userName.textContent = inputName.value;
 	userProf.textContent = inputProf.value;
-	clickPopup (popupFormEdit);
+	closePopup (popupFormEdit);
 }
 
 function likeCard (likeElement) {
@@ -79,17 +101,15 @@ function likeCard (likeElement) {
 
 function deleteCard (delElement) {
     delElement.querySelector('.element__delete').addEventListener('click', function(evt) {
-    const eventTarget = evt.target;
-    const listItem = eventTarget.closest('.element');
-      listItem.remove();
-    });
+	evt.target.closest('.element').remove();
+	});
 }
 
 function popupPhoto (popupElement) {
     popupElement.querySelector('.element__photo').addEventListener('click', function() {
     popupFormPhoto.querySelector('.popup__photo').src = popupElement.querySelector('.element__photo').src;
     popupFormPhoto.querySelector('.popup__photo-caption').textContent = popupElement.querySelector('.element__title').textContent;
-    clickPopup (popupFormPhoto);
+    openPopup (popupFormPhoto);
     });
 }
 
@@ -111,7 +131,7 @@ function formSubmitHandlerAdd (evt) {
 	const link = inputPhoto.value;
 	const newCard = createCard (name, link);
 	elementsGrid.prepend(newCard);
-    clickPopup (popupFormAdd);
+    closePopup (popupFormAdd);
 }
 
 function constructorCard() {
@@ -122,13 +142,13 @@ function constructorCard() {
 }
 
 editButton.addEventListener('click', openPopupEdit);
-closeButtonEdit.addEventListener('click', () => clickPopup(popupFormEdit));
+closeButtonEdit.addEventListener('click', () => closePopup(popupFormEdit));
 inputFormEdit.addEventListener('submit', formSubmitHandlerEdit);
 
 addButton.addEventListener('click', openPopupAdd);
-closeButtonAdd.addEventListener('click', () => clickPopup(popupFormAdd));
+closeButtonAdd.addEventListener('click', () => closePopup(popupFormAdd));
 inputFormAdd.addEventListener('submit', formSubmitHandlerAdd);
 
-closeButtonPhoto.addEventListener('click', () => clickPopup(popupFormPhoto));
+closeButtonPhoto.addEventListener('click', () => closePopup(popupFormPhoto));
 
 constructorCard();
