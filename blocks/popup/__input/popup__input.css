@@ -17,10 +17,6 @@
 	overflow: hidden;  
 }
 
-.popup__input:last-of-type {
-	margin-bottom: 48px;
-}
-
 .popup__input:focus {
 	opacity: 1;
 }
