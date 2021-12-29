@@ -1,29 +1,3 @@
-const initialCards = [
-	{
-	  name: 'Архыз',
-	  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-	},
-	{
-	  name: 'Челябинская область',
-	  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-	},
-	{
-	  name: 'Иваново',
-	  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-	},
-	{
-	  name: 'Камчатка',
-	  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-	},
-	{
-	  name: 'Холмогорский район',
-	  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-	},
-	{
-	  name: 'Байкал',
-	  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-	}
-];
 
 const userName = document.querySelector('.profile__name');
 const userProf = document.querySelector('.profile__prof');
@@ -41,6 +15,7 @@ const closeButtonAdd = popupFormAdd.querySelector('.popup__close-button');
 const inputFormAdd = popupFormAdd.querySelector('.popup__form_type_add');
 const inputTitle = popupFormAdd.querySelector('.popup__input_type_title');
 const inputPhoto = popupFormAdd.querySelector('.popup__input_type_photo');
+const saveButton = popupFormAdd.querySelector('.popup__save-button');
 
 const popupFormPhoto = document.querySelector('.popup_type_photo');
 const closeButtonPhoto = popupFormPhoto.querySelector('.popup__close-button');
@@ -84,6 +59,8 @@ function openPopupAdd() {
     openPopup (popupFormAdd);
 	inputTitle.value = '';
 	inputPhoto.value = '';
+	saveButton.classList.add('popup__save-button_inactive');
+	saveButton.setAttribute('disabled', 'disabled');
 }
 
 function formSubmitHandlerEdit (evt) {
@@ -134,7 +111,7 @@ function formSubmitHandlerAdd (evt) {
     closePopup (popupFormAdd);
 }
 
-function constructorCard() {
+function addInitialCards() {
 	initialCards.forEach(function(item){
 		const newCard = createCard (item.name, item.link);
 	elementsGrid.append(newCard);
@@ -151,4 +128,4 @@ inputFormAdd.addEventListener('submit', formSubmitHandlerAdd);
 
 closeButtonPhoto.addEventListener('click', () => closePopup(popupFormPhoto));
 
-constructorCard();
+addInitialCards();
