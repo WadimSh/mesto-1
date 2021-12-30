@@ -1,3 +1,5 @@
+//Поздравляю Вас с наступающим Новым годо! Желяю всего самого наилутшего и релизацию всех, даже амбициозных, Ваших планов!
+//Спасибо за Вашу работу! Мне это позволило намного лучше понять как работает JS.
 
 const userName = document.querySelector('.profile__name');
 const userProf = document.querySelector('.profile__prof');
