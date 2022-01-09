@@ -1,6 +1,3 @@
-//Поздравляю Вас с наступающим Новым годо! Желяю всего самого наилутшего и релизацию всех, даже амбициозных, Ваших планов!
-//Спасибо за Вашу работу! Мне это позволило намного лучше понять как работает JS.
-
 const userName = document.querySelector('.profile__name');
 const userProf = document.querySelector('.profile__prof');
 const editButton = document.querySelector('.profile__edit-button');
@@ -21,6 +18,8 @@ const saveButton = popupFormAdd.querySelector('.popup__save-button');
 
 const popupFormPhoto = document.querySelector('.popup_type_photo');
 const closeButtonPhoto = popupFormPhoto.querySelector('.popup__close-button');
+
+const inputError = document.querySelectorAll('.popup__input-error');
 
 const elementTemplate = document.querySelector('#template-element').content;
 const elementsGrid = document.querySelector('.elements__grid');
@@ -61,8 +60,8 @@ function openPopupAdd() {
     openPopup (popupFormAdd);
 	inputTitle.value = '';
 	inputPhoto.value = '';
-	saveButton.classList.add('popup__save-button_inactive');
 	saveButton.setAttribute('disabled', 'disabled');
+	
 }
 
 function formSubmitHandlerEdit (evt) {

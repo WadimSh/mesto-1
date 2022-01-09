@@ -2,7 +2,6 @@ const configs = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_inactive',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_activ'
 }
@@ -49,10 +48,8 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement, configs) => {
     if (hasInvalidInput(inputList)) {
-       buttonElement.classList.add(configs.inactiveButtonClass);
        buttonElement.setAttribute('disabled', 'disabled');
     } else {
-       buttonElement.classList.remove(configs.inactiveButtonClass);
        buttonElement.removeAttribute('disabled');
     }
 }; 

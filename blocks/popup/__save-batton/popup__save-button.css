@@ -20,12 +20,12 @@
     opacity: .8;
 }
 
-/*.popup__save-button:disabled {
+.popup__save-button:disabled {
     background: white;
     border: 1px solid #000;
     color: #000;
     opacity: .2;
-}*/
+}
 
 @media screen and (max-width: 767px) {
     .popup__save-button {
