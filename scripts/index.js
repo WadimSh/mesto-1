@@ -48,19 +48,12 @@ function closePopup (formName) {
    	document.removeEventListener('keydown', closeKeybordEscape);
 }
 
-function removeError (input, form) {
-	const inputError = form.querySelector(`.${input.name}-error`);
-	inputError.textContent = '';
-	inputError.classList.remove('popup__input-error_activ');
-	input.classList.remove('popup__input_type_error');
-}
-
 function openPopupEdit() {
     openPopup (popupFormEdit);
     inputName.value = userName.textContent;
 	inputProf.value = userProf.textContent;
-	removeError (inputName, popupFormEdit);
-	removeError (inputProf, popupFormEdit);
+	hideInputError (popupFormEdit, inputName, configs);
+	hideInputError (popupFormEdit, inputProf, configs);
 }
 
 function openPopupAdd() {
@@ -68,8 +61,8 @@ function openPopupAdd() {
 	inputTitle.value = '';
 	inputPhoto.value = '';
 	saveButton.setAttribute('disabled', 'disabled');
-	removeError (inputTitle, popupFormAdd);
-	removeError (inputPhoto, popupFormAdd);
+	hideInputError (popupFormAdd, inputTitle, configs);
+	hideInputError (popupFormAdd, inputPhoto, configs);
 }
 
 function formSubmitHandlerEdit (evt) {
