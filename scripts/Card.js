@@ -28,6 +28,7 @@ class Card {
     _handlePopupPhoto() {
         openPopup (popupFormPhoto);
         popupFormPhoto.querySelector('.popup__photo').src = this._link;
+        popupFormPhoto.querySelector('.popup__photo').alt = this._name;
         popupFormPhoto.querySelector('.popup__photo-caption').textContent = this._name;
     }
 

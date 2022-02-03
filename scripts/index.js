@@ -1,3 +1,6 @@
+//Спасибо за помощь и Вашу работу!
+//Было немного сложновато сразу допереть, по одному моменту, но кажется получилось.
+
 import { initialCards, configs } from './initialConfig.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
@@ -23,6 +26,7 @@ const saveButton = popupFormAdd.querySelector('.popup__save-button');
 
 export const popupFormPhoto = document.querySelector('.popup_type_photo');
 const closeButtonPhoto = popupFormPhoto.querySelector('.popup__close-button');
+
 
 function removeInputError (formName) {
 	formName.querySelectorAll('.popup__input-error_activ').forEach((inputElement) => {
@@ -74,8 +78,7 @@ function openPopupEdit() {
 
 function openPopupAdd() {
 	openPopup (popupFormAdd);
-	inputTitle.value = '';
-	inputPhoto.value = '';
+	document.getElementById('form-add').reset();
 	saveButton.setAttribute('disabled', 'disabled');
 }
 
@@ -86,22 +89,24 @@ function formSubmitHandlerEdit (evt) {
 	closePopup (popupFormEdit);
 }
 
+function newCard (item) {
+	const card = new Card (item, '#template-element');
+	return card.generateCard();
+}
+
 function formSubmitHandlerAdd (evt) {
 	evt.preventDefault();
-	const item = {};
-		item.name = inputTitle.value;
-		item.link = inputPhoto.value;
-	const card = new Card (item, '#template-element');
-	const cardElement = card.generateCard();
-	elementsGrid.append(cardElement);
+	const cardData = {
+		name: inputTitle.value,
+		link: inputPhoto.value
+	}; 
+	elementsGrid.prepend(newCard(cardData));
 	closePopup (popupFormAdd);
 }
 
 function addInitialCards() {
 	initialCards.forEach((item) => {
-		const card = new Card (item, '#template-element');
-		const cardElement = card.generateCard();
-		elementsGrid.append(cardElement);
+		elementsGrid.append(newCard(item));
 	});
 }
 
