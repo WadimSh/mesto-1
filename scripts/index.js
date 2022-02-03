@@ -24,46 +24,59 @@ const saveButton = popupFormAdd.querySelector('.popup__save-button');
 export const popupFormPhoto = document.querySelector('.popup_type_photo');
 const closeButtonPhoto = popupFormPhoto.querySelector('.popup__close-button');
 
+function removeInputError (formName) {
+	formName.querySelectorAll('.popup__input-error_activ').forEach((inputElement) => {
+		inputElement.classList.remove('popup__input-error_activ');
+    	inputElement.textContent = '';
+	});
+}
+
+function removeMessageErroe (formName) {
+	formName.querySelectorAll('.popup__input_type_error').forEach((inputElement) => {
+		inputElement.classList.remove('popup__input_type_error');
+	});
+}
 
 function closeMausOverlay (evt) {
 	const item = document.querySelector('.popup_opened');
 	if(evt.target === item) {
 		closePopup(item);
-	}
+	};
 }
 
 function closeKeybordEscape (evt) {
 	const item = document.querySelector('.popup_opened');
 	if(evt.key === 'Escape') {
 		closePopup(item);
-	}
+	};
 }
 
 export function openPopup(formName) {
-    formName.classList.add('popup_opened');
+	formName.classList.add('popup_opened');
 	document.addEventListener('mousedown', closeMausOverlay);
-   	document.addEventListener('keydown', closeKeybordEscape);
+	document.addEventListener('keydown', closeKeybordEscape);
 }
 
 function closePopup(formName) {
-    formName.classList.remove('popup_opened');
+	
+	formName.classList.remove('popup_opened');
 	document.removeEventListener('mousedown', closeMausOverlay);
-   	document.removeEventListener('keydown', closeKeybordEscape);
+	document.removeEventListener('keydown', closeKeybordEscape);
+	removeInputError(formName);
+	removeMessageErroe(formName);
 }
 
 function openPopupEdit() {
-    openPopup (popupFormEdit);
-    inputName.value = userName.textContent;
+	openPopup (popupFormEdit);
+	inputName.value = userName.textContent;
 	inputProf.value = userProf.textContent;
-	
 }
 
 function openPopupAdd() {
-    openPopup (popupFormAdd);
+	openPopup (popupFormAdd);
 	inputTitle.value = '';
 	inputPhoto.value = '';
 	saveButton.setAttribute('disabled', 'disabled');
-	
 }
 
 function formSubmitHandlerEdit (evt) {
@@ -74,14 +87,14 @@ function formSubmitHandlerEdit (evt) {
 }
 
 function formSubmitHandlerAdd (evt) {
-    evt.preventDefault();
-	const item = {}
+	evt.preventDefault();
+	const item = {};
 		item.name = inputTitle.value;
 		item.link = inputPhoto.value;
 	const card = new Card (item, '#template-element');
 	const cardElement = card.generateCard();
 	elementsGrid.append(cardElement);
-    closePopup (popupFormAdd);
+	closePopup (popupFormAdd);
 }
 
 function addInitialCards() {

@@ -1,8 +1,3 @@
 .popup__input_type_error {
     border-color: #ff0000;
-    margin-bottom: 0;
-}
-
-.popup__input_type_error:last-of-type {
-    margin-bottom: 0;
 }

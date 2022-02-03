@@ -1,3 +1,21 @@
 .popup__input-error_activ {
     display: block;
+    position: absolute;
+	top: 145px;
+    left: 0;
+}
+
+.popup__input-error_activ:last-of-type {
+    top: 210px;
+}
+
+@media screen and (max-width: 767px) {
+	.popup__input-error_activ {
+        top: 148px;
+		left: -12px;
+	}
+
+	.popup__input-error_activ:last-of-type {
+		left: -12px;
+	}
 }
