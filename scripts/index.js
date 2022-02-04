@@ -1,6 +1,3 @@
-//Спасибо за помощь и Вашу работу!
-//Было немного сложновато сразу допереть, по одному моменту, но кажется получилось.
-
 import { initialCards, configs } from './initialConfig.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
@@ -96,11 +93,7 @@ function newCard (item) {
 
 function formSubmitHandlerAdd (evt) {
 	evt.preventDefault();
-	const cardData = {
-		name: inputTitle.value,
-		link: inputPhoto.value
-	}; 
-	elementsGrid.prepend(newCard(cardData));
+	elementsGrid.prepend(newCard({ name: inputTitle.value, link: inputPhoto.value }));
 	closePopup (popupFormAdd);
 }
 
