@@ -32,4 +32,4 @@ const configs = {
     errorClass: 'popup__input-error_activ'
 };
 
-export { initialCards ,configs };
+export { initialCards, configs };
