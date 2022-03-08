@@ -78,3 +78,4 @@ addButton.addEventListener('click', () => {
 
 addImageCard.setEventListeners();
 
+popupImage.setEventListeners();
