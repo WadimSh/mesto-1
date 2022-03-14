@@ -1,12 +1,16 @@
 export class Card {
-    constructor(item, cardSelector, handleCardClick, handleDeleteClick) {
+    constructor(item, cardSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
         this._name = item.name;
         this._link = item.link;
         this._likes = item.likes;
         this._id = item.id;
+        this._userId = item.userId;
+        this._ownerId = item.ownerId;
+
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
+        this._handleLikeClick = handleLikeClick;
     }
 
     _getTemplate() {
@@ -19,8 +23,12 @@ export class Card {
         return cardElement;
     }
 
+    _fillLikeClick() {
+        this._element.querySelector('.element__like').classList.add('element__like_active');
+    }
+
     _handleLikeClick() {
-        this._element.querySelector('.element__like').classList.toggle('element__like_active');
+        this._element.querySelector('.element__like').classList.remove('element__like_active');
     }
 
     handleDeleteCard() {
@@ -38,10 +46,24 @@ export class Card {
         this._element.querySelector('.element__photo').addEventListener('click', this._handleCardClick);
     }
 
-    _setLikes() {
+    isLiked() {
+        const userHasLike = this._likes.find(user => user._id === this._userId);
+        return userHasLike
+    }
+
+    setLikes(newLikes) {
+        this._likes = newLikes;
         const likeCount = this._element.querySelector('.element__like-count');
         likeCount.textContent = this._likes.length;
+        
+        if(this.isLiked()) {
+            this._fillLikeClick()
+        } else {
+            this._handleLikeClick()
+        }
     }
+
+
 
     generateCard() {
         this._element = this._getTemplate();
@@ -51,7 +73,13 @@ export class Card {
         this._element.querySelector('.element__photo').alt = this._name;
         this._element.querySelector('.element__title').textContent = this._name;
 
-        this._setLikes();
+        this.setLikes(this._likes);
+
+        if(this._ownerId !== this._userId) {
+            this._element.querySelector('.element__delete').style.display = 'none';
+        }
+
+        
 	
         return this._element;
     }

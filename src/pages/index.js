@@ -36,10 +36,13 @@ const api = new Api({
 //объект пользователя
 const userInfo = new UserInfo('.profile__name', '.profile__prof', '.profile__avatar');
 
+let userId
+
 api.getUserInfo()
   	.then(res => {
     	userInfo.setUserInfo(res.name, res.about);
 		userInfo.setUserAvatar(res.avatar);
+		userId = res._id;
 	})
 
 
@@ -61,18 +64,12 @@ api.getInitialCards()
 				name: data.name,
 				link: data.link,
 				likes: data.likes,
-				id: data._id
+				id: data._id,
+				userId: userId,
+				ownerId: data.owner._id
 			})
 			cardList.addItem(card);
 		})
-		//.catch((err) => {
-			//console.log(`Невозможно получить карточки с сервера. ${err}.`);
-			//initialCards.forEach(data => {
-			//	const card = creatCard(data)
-			//	cardList.addItem(card);
-			//}) 
-			
-		//})
 	})
 
 	const creatCard = (data) => {
@@ -87,13 +84,24 @@ api.getInitialCards()
 				confirmPopup.changeSubmitHandler(() => {
 					api.deleteCard(id)
 					.then(res => {
-						
 						card.handleDeleteCard();
+						confirmPopup.close()
 					})
-					confirmPopup.close()
 				})
-			}
-		);
+			},
+			(id) => {
+				if (card.isLiked()) {
+					api.deleteLike(id)
+						.then(res => {
+						card.setLikes(data.likes)
+					})
+				} else {
+					api.addLike(id)
+						.then(res => {
+						card.setLikes(data.likes)
+					})
+				}
+			});
 		return card.generateCard();
 	}
 
@@ -112,7 +120,9 @@ const addImageCard = new PopupWithForm('.popup_type_card',
 				name: res.name,
 				link: res.link,
 				likes: res.likes,
-				id: res._id
+				id: res._id,
+				userId: userId,
+				ownerId: res.owner._id
 			})
 			cardList.newItem(card);
 		})

@@ -68,4 +68,21 @@ deleteCard(id) {
   })
   .then(this._checkResponse);
 }
+
+deleteLike(id) {
+  return fetch(`${this.url}/cards/${id}/like`, {
+    method: 'DELETE',
+    headers: this.headers
+  })
+  .then(this._checkResponse);
+}
+
+addLike(id) {
+  return fetch(`${this.url}/cards/${id}/like`, {
+    method: 'PUT',
+    headers: this.headers
+  })
+  .then(this._checkResponse);
+}
+
 }
