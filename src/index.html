@@ -16,10 +16,12 @@
 		</header>
 		<main class="content">
 			<section class="profile">
-				<img src="<%=require('./images/image.jpg')%>" alt="Фотография для аватарки" class="profile__avatar">
+				<button type="button" class="profile__edit-avatar">
+					<img src="<%=require('./images/image.jpg')%>" alt="Фотография для аватарки" class="profile__avatar">
+				</button>
 				<div class="profile__info">
-					<h1 class="profile__name">Жак-Ив Кусто</h1>
-					<p class="profile__prof">Исследователь океана</p>
+					<h1 class="profile__name"></h1>
+					<p class="profile__prof"></p>
 					<button type="button" class="profile__edit-button"></button>
 				</div>
 				<button type="button" class="profile__add-button"></button>
@@ -61,11 +63,31 @@
 			</form>
 		</div>
 	</div>
+	<div class="popup popup_type_avatar">
+		<div class="popup__container">
+			<button type="button" class="popup__close-button"></button>
+			<form class="popup__form popup__form_type_avatar" name="avatar-form" id="form-avatar" novalidate>
+				<h2 class="popup__title">Обновить аватар</h2>
+				<input type="url" class="popup__input popup__input_type_avatar" name="element-avatar" placeholder="Ссылка на картинку" autocomplete="off" required>
+				<span class="popup__input-error element-avatar-error"></span>
+				<button type="submit" class="popup__save-button">Сохранить</button>
+			</form>
+		</div>
+	</div>
 	<div class="popup popup_type_photo">
 		<div class="popup__container popup__container-photo">
 		  <button type="button" class="popup__close-button"></button>
 		  <img src="#" alt="фото места" class="popup__photo">
 		  <h2 class="popup__photo-caption"></h2>
+		</div>
+	</div>
+	<div class="popup popup_type_delete">
+		<div class="popup__container">
+			<button type="button" class="popup__close-button"></button>
+			<form class="popup__form popup__form_type_delete" name="delete-form" novalidate>
+				<h2 class="popup__title">Вы уверены?</h2>
+				<button type="submit" class="popup__save-button">Да</button>
+			</form>
 		</div>
 	</div>
 	<template id="template-element">
@@ -74,7 +96,10 @@
 			<button type="button" class="element__delete"></button>
 			<div class="element__block">
 				<h2 class="element__title"></h2>
-				<button type="button" class="element__like"></button>
+				<div class="element__box-like">
+				 <button type="button" class="element__like"></button>
+				 <span class="element__like-count"></span>
+				</div>
 			</div>
 		</li>
 	</template>

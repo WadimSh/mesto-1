@@ -5,7 +5,7 @@
     left: 0;
 }
 
-.popup__input-error_activ:last-of-type {
+.popup__input-error_activ:nth-of-type(even) {
     top: 210px;
 }
 
@@ -15,7 +15,7 @@
 		left: -12px;
 	}
 
-	.popup__input-error_activ:last-of-type {
+	.popup__input-error_activ:nth-of-type(even) {
 		left: -12px;
 	}
 }
