@@ -45,17 +45,12 @@ api.getUserInfo()
 		userId = res._id;
 	})
 
-
-
 //карточки
 const popupImage = new PopupWithImage('.popup_type_photo'); 
 popupImage.setEventListeners();
 
 const confirmPopup = new PopupWithForm('.popup_type_delete');
 confirmPopup.setEventListeners();
-
-
-
 
 api.getInitialCards()
 	.then(cardsList => {
@@ -70,67 +65,79 @@ api.getInitialCards()
 			})
 			cardList.addItem(card);
 		})
+		.catch((err) => {
+			console.log(`Невозможно получить карточки с сервера. ${err}.`);
+			initialCards.forEach(data => {
+				const card = creatCard(data)
+				cardList.addItem(card);
+			}) 
+			
+		})
 	})
 
-	const creatCard = (data) => {
-		const card = new Card(
-			data, 
-			'#template-element',
-			() => {
-				popupImage.open(data.name, data.link)
-			},
-			(id) => {
-				confirmPopup.open();
-				confirmPopup.changeSubmitHandler(() => {
-					api.deleteCard(id)
+const creatCard = (data) => {
+	const card = new Card(
+		data, 
+		'#template-element',
+		() => {
+			popupImage.open(data.name, data.link)
+		},
+		(id) => {
+			confirmPopup.open();
+			confirmPopup.changeSubmitHandler(() => {
+				api.deleteCard(id)
 					.then(res => {
 						card.handleDeleteCard();
 						confirmPopup.close()
 					})
-				})
-			},
-			(id) => {
-				if (card.isLiked()) {
-					api.deleteLike(id)
-						.then(res => {
-						card.setLikes(data.likes)
-					})
-				} else {
-					api.addLike(id)
-						.then(res => {
-						card.setLikes(data.likes)
-					})
+					
 				}
-			});
-		return card.generateCard();
-	}
-
+			)
+		},
+		(id) => {
+			if(card.isLiked()) {
+				api.deleteLike(id)
+					.then(res => {
+						card.setLikes(res.likes)
+					}
+				)
+			} else {
+				api.addLike(id)
+					.then(res => {
+						card.setLikes(res.likes)
+					}
+				)
+			}
+		}
+	);
+	return card.generateCard();
+}
 
 const cardList = new Section({items: [], renderer: (item) => creatCard(item)}, '.elements__grid');
 cardList.renderItems();
 
-
 //форма добавления карточки
 const addImageCard = new PopupWithForm('.popup_type_card', 
-() => {
-	addImageCard.isLoadingMessage(true);
-	api.postNewCard(inputTitle.value, inputPhoto.value)
-		.then(res => {
-			const card = creatCard({
-				name: res.name,
-				link: res.link,
-				likes: res.likes,
-				id: res._id,
-				userId: userId,
-				ownerId: res.owner._id
+	() => {
+		addImageCard.isLoadingMessage(true);
+		api.postNewCard(inputTitle.value, inputPhoto.value)
+			.then(res => {
+				const card = creatCard({
+					name: res.name,
+					link: res.link,
+					likes: res.likes,
+					id: res._id,
+					userId: userId,
+					ownerId: res.owner._id
+				})
+				cardList.newItem(card);
 			})
-			cardList.newItem(card);
-		})
-		.finally(() => {
-			addImageCard.isLoadingMessage(false);
-		})
+			.finally(() => {
+				addImageCard.isLoadingMessage(false);
+			})
 		addImageCard.close();
-});
+	}
+);
 
 addImageCard.setEventListeners();
 
@@ -159,7 +166,8 @@ const formProfile = new PopupWithForm('.popup_type_profile',
 				formProfile.isLoadingMessage(false);
 			})
 		formProfile.close();
-});
+	}
+);
 
 formProfile.setEventListeners();
 
@@ -183,7 +191,8 @@ const formAvatar = new PopupWithForm('.popup_type_avatar',
 				formAvatar.isLoadingMessage(false);
 			})
 		formAvatar.close();
-});
+	}
+);
 
 formAvatar.setEventListeners();
 

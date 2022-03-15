@@ -13,10 +13,10 @@ _checkResponse(res) {
   }
 
 getUserInfo() {
-    return fetch(`${this.url}/users/me`, {
+  return fetch(`${this.url}/users/me`, {
       headers: this.headers,
     })
-    .then(this._checkResponse);
+  .then(this._checkResponse);
 }
 
 getInitialCards() {
@@ -69,17 +69,17 @@ deleteCard(id) {
   .then(this._checkResponse);
 }
 
-deleteLike(id) {
-  return fetch(`${this.url}/cards/${id}/like`, {
-    method: 'DELETE',
+addLike(id) {
+  return fetch(`${this.url}/cards/${id}/likes`, {
+    method: 'PUT',
     headers: this.headers
   })
   .then(this._checkResponse);
 }
 
-addLike(id) {
-  return fetch(`${this.url}/cards/${id}/like`, {
-    method: 'PUT',
+deleteLike(id) {
+  return fetch(`${this.url}/cards/${id}/likes`, {
+    method: 'DELETE',
     headers: this.headers
   })
   .then(this._checkResponse);
