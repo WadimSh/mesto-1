@@ -36,14 +36,17 @@ const api = new Api({
 //объект пользователя
 const userInfo = new UserInfo('.profile__name', '.profile__prof', '.profile__avatar');
 
-let userId
+let userId = null;
 
-api.getUserInfo()
-  	.then(res => {
-    	userInfo.setUserInfo(res.name, res.about);
-		userInfo.setUserAvatar(res.avatar);
-		userId = res._id;
-	})
+//api.getUserInfo()
+//	.then(res => {
+//		userInfo.setUserInfo(res.name, res.about);
+//		userInfo.setUserAvatar(res.avatar);
+//		userId = res._id;
+//	})
+//	.catch((err) => {
+//		console.log(`${err}`)
+//	})
 
 //карточки
 const popupImage = new PopupWithImage('.popup_type_photo'); 
@@ -52,28 +55,27 @@ popupImage.setEventListeners();
 const confirmPopup = new PopupWithForm('.popup_type_delete');
 confirmPopup.setEventListeners();
 
-api.getInitialCards()
-	.then(cardsList => {
-		cardsList.forEach(data => {
-			const card = creatCard({
-				name: data.name,
-				link: data.link,
-				likes: data.likes,
-				id: data._id,
-				userId: userId,
-				ownerId: data.owner._id
-			})
-			cardList.addItem(card);
-		})
-		.catch((err) => {
-			console.log(`Невозможно получить карточки с сервера. ${err}.`);
-			initialCards.forEach(data => {
-				const card = creatCard(data)
-				cardList.addItem(card);
-			}) 
-			
-		})
-	})
+//api.getInitialCards()
+//	.then(cardsList => {
+//		cardsList.forEach(data => {
+//			const card = creatCard({
+//				name: data.name,
+//				link: data.link,
+//				likes: data.likes,
+//				id: data._id,
+//				userId: userId,
+//				ownerId: data.owner._id
+//			})
+//			cardList.addItem(card);
+//		})
+//	})
+//	.catch((err) => {
+//		console.log(`${err}`);
+//		initialCards.forEach(data => {
+//			const card = creatCard(data)
+//			cardList.addItem(card);
+//		}) 
+//	})
 
 const creatCard = (data) => {
 	const card = new Card(
@@ -132,6 +134,9 @@ const addImageCard = new PopupWithForm('.popup_type_card',
 				})
 				cardList.newItem(card);
 			})
+			.catch((err) => {
+                console.log(`${err}`)
+            })
 			.finally(() => {
 				addImageCard.isLoadingMessage(false);
 			})
@@ -162,6 +167,9 @@ const formProfile = new PopupWithForm('.popup_type_profile',
 			.then(res => {
 				userInfo.setUserInfo(res.name, res.about);
 			})
+			.catch((err) => {
+                console.log(`${err}`)
+            })
 			.finally(() => {
 				formProfile.isLoadingMessage(false);
 			})
@@ -187,6 +195,9 @@ const formAvatar = new PopupWithForm('.popup_type_avatar',
 			.then(res => {
 				userInfo.setUserAvatar(res.avatar);
 			})
+			.catch((err) => {
+                console.log(`${err}`)
+            })
 			.finally(() => {
 				formAvatar.isLoadingMessage(false);
 			})
@@ -200,3 +211,27 @@ avatarButton.addEventListener('click', () => {
 	formAvatar.open();
 	validateFormAvatar.resetValidation();
 });
+
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([cards, user]) => {
+	  console.log(cards)
+	userInfo.setUserInfo(user.name, user.about);
+	userInfo.setUserAvatar(user.avatar);
+	userId = user._id;
+
+	cards.forEach(data => {
+		const card = creatCard({
+			name: data.name,
+			link: data.link,
+			likes: data.likes,
+			id: data._id,
+			userId: userId,
+			ownerId: data.owner._id
+		})
+	cardList.addItem(card);
+	})
+})
+  .catch(err => {
+    console.log(`${err}`)
+  });
+  

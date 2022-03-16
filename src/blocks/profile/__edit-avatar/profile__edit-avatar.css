@@ -6,7 +6,6 @@
     outline: none;
     border: none;
     border-radius: 50%;
-    background: transparent;
     transition: background-color 0.2s linear;
     background: url(../../../images/edit-avatar.svg) rgba(0, 0, 0) center no-repeat;
 }
