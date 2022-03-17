@@ -42,10 +42,10 @@
 			<button type="button" class="popup__close-button"></button>
 			<form class="popup__form popup__form_type_edit" name="profile-form" novalidate>
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<input type="text" class="popup__input popup__input_type_name" name="profile-name" placeholder="Ваше имя" autocomplete="off" minlength="2" maxlength="40" required>
-				<span class="popup__input-error profile-name-error"></span>
-				<input type="text" class="popup__input popup__input_type_prof" name="profile-prof" placeholder="Ваш род занятий" autocomplete="off" minlength="2" maxlength="200" required>
-				<span class="popup__input-error profile-prof-error"></span>
+				<input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Ваше имя" autocomplete="off" minlength="2" maxlength="40" required>
+				<span class="popup__input-error name-error"></span>
+				<input type="text" class="popup__input popup__input_type_prof" name="profile" placeholder="Ваш род занятий" autocomplete="off" minlength="2" maxlength="200" required>
+				<span class="popup__input-error profile-error"></span>
 				<button type="submit" class="popup__save-button">Сохранить</button>
 			</form>
 		</div>
@@ -55,10 +55,10 @@
 			<button type="button" class="popup__close-button"></button>
 			<form class="popup__form popup__form_type_add" name="add-form" id="form-add" novalidate>
 				<h2 class="popup__title">Новое место</h2>
-				<input type="text" class="popup__input popup__input_type_title" name="element-title" placeholder="Название картинки" autocomplete="off" minlength="2" maxlength="30" required>
-				<span class="popup__input-error element-title-error"></span>
-				<input type="url" class="popup__input popup__input_type_photo" name="element-photo" placeholder="Ссылка на картинку" autocomplete="off" required>
-				<span class="popup__input-error element-photo-error"></span>
+				<input type="text" class="popup__input popup__input_type_title" name="title" placeholder="Название картинки" autocomplete="off" minlength="2" maxlength="30" required>
+				<span class="popup__input-error title-error"></span>
+				<input type="url" class="popup__input popup__input_type_photo" name="photo" placeholder="Ссылка на картинку" autocomplete="off" required>
+				<span class="popup__input-error photo-error"></span>
 				<button type="submit" class="popup__save-button">Создать</button>
 			</form>
 		</div>
@@ -68,8 +68,8 @@
 			<button type="button" class="popup__close-button"></button>
 			<form class="popup__form popup__form_type_avatar" name="avatar-form" id="form-avatar" novalidate>
 				<h2 class="popup__title">Обновить аватар</h2>
-				<input type="url" class="popup__input popup__input_type_avatar" name="element-avatar" placeholder="Ссылка на картинку" autocomplete="off" required>
-				<span class="popup__input-error element-avatar-error"></span>
+				<input type="url" class="popup__input popup__input_type_avatar" name="avatar" placeholder="Ссылка на картинку" autocomplete="off" required>
+				<span class="popup__input-error avatar-error"></span>
 				<button type="submit" class="popup__save-button">Сохранить</button>
 			</form>
 		</div>

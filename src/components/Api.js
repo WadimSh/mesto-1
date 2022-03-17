@@ -26,36 +26,36 @@ getInitialCards() {
       .then(this._checkResponse);
 }
 
-patchUserInfo(name, about){
+patchUserInfo(item){
     return fetch(`${this.url}/users/me`, {
         method: 'PATCH',
         headers: this.headers,
         body: JSON.stringify({
-            name: name,
-            about: about
+            name: item.name,
+            about: item.profile
           })
       })
       .then(this._checkResponse);
 }
 
-patchUserAvatar(avatar){
+patchUserAvatar(item){
   return fetch(`${this.url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-          avatar: avatar
+          avatar: item.avatar
         })
     })
     .then(this._checkResponse);
 }
 
-postNewCard(name, link) {
+postNewCard(item) {
   return fetch(`${this.url}/cards`, {
     method: 'POST',
     headers: this.headers,
     body: JSON.stringify({
-      name: name,
-      link: link
+      name: item.title,
+      link: item.photo
     }),
   })
   .then(this._checkResponse);
