@@ -53,7 +53,7 @@ export class Card {
 
     setLikes(newLikes) {
         this._likes = newLikes;
-        this._element.querySelector('.element__like-count').textContent = this._likes.length;
+        this._countLikeElement.textContent = this._likes.length;
 
         if(this.isLiked()) {
             this._fillLike();
@@ -69,6 +69,8 @@ export class Card {
         this._elementPhoto.src = this._link;
         this._elementPhoto.alt = this._name;
         this._element.querySelector('.element__title').textContent = this._name;
+
+        this._countLikeElement = this._element.querySelector('.element__like-count');
 
         this.setLikes(this._likes);
 

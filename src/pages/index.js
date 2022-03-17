@@ -1,6 +1,6 @@
 import './index.css';
 
-import { initialCards, configs } from '../utils/initialConfig.js';
+import { configs } from '../utils/initialConfig.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -56,7 +56,7 @@ const creatCard = (data) => {
 				api.deleteCard(id)
 					.then(res => {
 						card.handleDeleteCard();
-						confirmPopup.close()
+						confirmPopup.close();
 					})
 					.catch((err) => {
 						console.log(`${err}`)
@@ -114,13 +114,14 @@ const addImageCard = new PopupWithForm('.popup_type_card',
 					ownerId: res.owner._id
 				})
 				cardList.prependItem(card);
+				addImageCard.close();
 			})
 			.catch((err) => {
                 console.log(`${err}`)
             })
 			.finally(() => {
 				addImageCard.setLoadingMessage(false);
-				addImageCard.close();
+				
 			})
 	}
 );
@@ -148,13 +149,14 @@ const formProfile = new PopupWithForm('.popup_type_profile',
 		api.patchUserInfo(item)
 			.then(res => {
 				userInfo.setUserInfo(res.name, res.about);
+				formProfile.close();
 			})
 			.catch((err) => {
                 console.log(`${err}`)
             })
 			.finally(() => {
 				formProfile.setLoadingMessage(false);
-				formProfile.close();
+				
 			})
 	}
 );
@@ -176,13 +178,14 @@ const formAvatar = new PopupWithForm('.popup_type_avatar',
 		api.patchUserAvatar(item)
 			.then(res => {
 				userInfo.setUserAvatar(res.avatar);
+				formAvatar.close();
 			})
 			.catch((err) => {
                 console.log(`${err}`)
             })
 			.finally(() => {
 				formAvatar.setLoadingMessage(false);
-				formAvatar.close();
+				
 			})
 	}
 );
@@ -203,9 +206,5 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 	})
   .catch(err => {
     console.log(`${err}`);
-	initialCards.forEach(data => {
-		const card = creatCard(data)
-		cardList.addItem(card);
-  })
 });
   
